@@ -102,7 +102,7 @@ static void SetSegmentBackground(IKSegment *segment, id background) {
                 [imageView release];
             }
             else {
-                NSAssert(NO, @"You can use only NSString, UIImage or UIView instances as items, but you use %@", NSStringFromClass([item class]));
+                NSAssert1(NO, @"You can use only NSString, UIImage or UIView instances as items, but you use %@", NSStringFromClass([item class]));
                 __builtin_unreachable();
             }
             [segments addObject:segment];
