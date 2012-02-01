@@ -30,8 +30,6 @@
 
 
 - (void)setBackgroundImage:(UIImage *)newBackgroundImage {
-    [newBackgroundImage retain];
-    [backgroundImage release];
     backgroundImage = newBackgroundImage;
     [self setNeedsDisplay];
 }
@@ -45,10 +43,6 @@
 }
 
 
-- (void)dealloc {
-    [backgroundImage release];
-    [super dealloc];
-}
 
 
 - (void)drawRect:(CGRect)rect {

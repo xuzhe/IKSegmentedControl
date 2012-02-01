@@ -9,8 +9,6 @@
 @synthesize separateSelectedItem;
 
 - (void)setSeparator:(id)newSeparator {
-    [newSeparator retain];
-    [separator release];
     separator = newSeparator;
     [self setNeedsDisplay];
 }
@@ -22,17 +20,13 @@
         self.opaque = NO;
         self.userInteractionEnabled = NO;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        separator = [[UIColor lightGrayColor] retain];
+        separator = [UIColor lightGrayColor];
         segmentedControl = aSegmentedControl;
     }
     return self;
 }
 
 
-- (void)dealloc {
-    [separator release];
-    [super dealloc];
-}
 
 
 - (void)drawRect:(CGRect)rect {

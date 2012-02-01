@@ -15,9 +15,9 @@ typedef enum _IKSegmentPosition {
 @interface IKSegment : UIView {
 }
 
-@property (nonatomic, retain) id contentView;
+@property (nonatomic, strong) id contentView;
 @property (nonatomic) CGFloat width;
-@property (nonatomic, retain) UIImage *backgroundImage;
+@property (nonatomic, strong) UIImage *backgroundImage;
 /**
  @disctussion If backgroundImage is non-nil and position is either IKSegmentPositionLeft or IKSegmentPositionRight then 
  image is drawn so that to hide left/right cap.

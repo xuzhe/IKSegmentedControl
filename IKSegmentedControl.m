@@ -93,13 +93,11 @@ static void SetSegmentBackground(IKSegment *segment, id background) {
                 label.text = item;
                 segment = [[IKSegment alloc] initWithFrame:CGRectZero];
                 segment.contentView = label;
-                [label release];
             }
             else if ([item isKindOfClass:[UIImage class]]) {
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:item];
                 segment = [[IKSegment alloc] initWithFrame:imageView.frame];
                 segment.contentView = imageView;
-                [imageView release];
             }
             else {
                 NSAssert1(NO, @"You can use only NSString, UIImage or UIView instances as items, but you use %@", NSStringFromClass([item class]));
@@ -107,23 +105,15 @@ static void SetSegmentBackground(IKSegment *segment, id background) {
             }
             [segments addObject:segment];
             [self addSubview:segment];
-            [segment release];
         }
         
         _separators = [[IKSeparators alloc] initWithSegmentedControl:self];
         [self addSubview:_separators];
-        [_separators release];
     }
     return self;
 }
 
 
-- (void)dealloc {
-    [segments release];
-    [_backgrounds[_NormalState] release];
-    [_backgrounds[_SelectedState] release];
-    [super dealloc];
-}
 
 
 - (void)layoutSubviews {
@@ -221,12 +211,10 @@ static void SetSegmentBackground(IKSegment *segment, id background) {
 
 - (void)setBackgroundForNormalState:(id)normalBackground forSelectedState:(id)selectedBackground {
     NSParameterAssert([normalBackground isKindOfClass:[UIColor class]] || [normalBackground isKindOfClass:[UIImage class]]);
-    [_backgrounds[_NormalState] release];
-    _backgrounds[_NormalState] = [normalBackground retain];
+    _backgrounds[_NormalState] = normalBackground;
     
     NSParameterAssert([selectedBackground isKindOfClass:[UIColor class]] || [selectedBackground isKindOfClass:[UIImage class]]);
-    [_backgrounds[_SelectedState] release];
-    _backgrounds[_SelectedState] = [selectedBackground retain];
+    _backgrounds[_SelectedState] = selectedBackground;
     [self _updateSegments];
 }
 
